@@ -1,5 +1,7 @@
 # Pokey
 
+[![Gem Version](https://badge.fury.io/rb/pokey.svg)](http://badge.fury.io/rb/pokey)
+
 Pokey is a Ruby gem designed to easily simulate webhooks / other HTTP requests common 
 to a production environment.
 
