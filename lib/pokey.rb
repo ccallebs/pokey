@@ -2,6 +2,7 @@ require "pokey/version"
 require "pokey/configuration"
 require "pokey/hook"
 require "pokey/hooks"
+require "pokey/logger"
 require "pokey/request"
 require "pokey/scheduler"
 

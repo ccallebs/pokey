@@ -7,6 +7,7 @@ class Pokey::Request
 
   def initialize(destination, http_method = :post, data = {})
     @destination, @http_method, @data = destination, http_method, data
+    @log = Pokey::Logger.new.log
   end
 
   def raw_request
@@ -22,6 +23,10 @@ class Pokey::Request
       end
 
       response = http.request(request)
+
+      if response
+        @log.info "Made request to #{uri.host}:#{uri.port} with following data: #{@data}"
+      end
     end 
   end
 
