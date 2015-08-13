@@ -50,6 +50,8 @@ streamline creation of Pokey events.
 # initializers/pokey.rb
 Pokey.configure do |config|
   config.hook_dir = "app/pokey" # Defaults to app/pokey
+  
+  Pokey::Scheduler.commit!
 end
 
 # app/pokey/sendgrid_event_hook.rb
