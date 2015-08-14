@@ -1,3 +1,5 @@
+require 'rails/generators'
+
 module Pokey
   module Generators
     class InstallGenerator < Rails::Generators::Base

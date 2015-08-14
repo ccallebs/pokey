@@ -1,3 +1,5 @@
+require 'rails/generators'
+
 module Pokey
   module Generators
     class HookGenerator < Rails::Generators::NamedBase
