@@ -5,7 +5,7 @@ class Pokey::Scheduler
     @rufus ||= Rufus::Scheduler.new
   end
 
-  def self.commit!
+  def self.run!
     scheduler = new
 
     Pokey::Hooks.add_from_dir(Pokey.hook_dir)

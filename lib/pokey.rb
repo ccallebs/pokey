@@ -17,6 +17,7 @@ module Pokey
 
     def configure
       yield(configuration)
+      Pokey::Scheduler.run!
     end
 
     def configuration
