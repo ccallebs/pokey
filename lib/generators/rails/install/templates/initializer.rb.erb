@@ -1,5 +1,8 @@
 Pokey.configure do |config|
-  config.hook_dir = "app/hooks" 
+  config.hook_dir = "app/hooks"
+  
+  config.run_on   = [:development, :qa] # Only set environments you want pokey
+                                        # to simulate requests for
 
   # Add some hooks on-the-fly here. If your data is somewhat complicated, add
   # a hook instead with `rails g pokey:hook hook_name`

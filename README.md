@@ -33,6 +33,9 @@ setting the default hook directory and (optionally) defining custom hooks here.
 ``` RUBY
 Pokey.configure do |config|
   config.hook_dir = "app/pokey" # Defaults to app/pokey
+  config.run_on = [:development, :qa] # Only set environments you want pokey to
+                                      # simulate requests for. If not using Rails,
+                                      # this currently has no effect
 
   config.add_hook do |hook|
     hook.destination = "/my/webhook/endpoint"

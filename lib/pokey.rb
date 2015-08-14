@@ -17,7 +17,7 @@ module Pokey
 
     def configure
       yield(configuration)
-      Pokey::Scheduler.run!
+      Pokey::Scheduler.run! if should_run?
     end
 
     def configuration
@@ -30,6 +30,16 @@ module Pokey
     
     def hook_dir
       configuration.hook_dir
+    end
+
+    def should_run?
+      current_env.nil? || configuration.run_on.map(&:to_s).include?(current_env)
+    end
+
+    def current_env
+      if defined?(Rails)
+        Rails.env
+      end
     end
   end
 end

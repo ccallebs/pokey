@@ -35,4 +35,38 @@ describe Pokey do
       end
     end
   end
+
+  describe "#should_run?" do
+    context "when configured for current Rails.env" do
+      before do
+        allow(Pokey).to receive(:current_env).and_return("development")
+
+        Pokey.configure do |config|
+          config.run_on = [:development, :qa]
+        end
+      end
+
+      subject { Pokey.should_run? }
+
+      it "returns true" do
+        expect(subject).to eq true
+      end
+    end
+
+    context "when not configured for current Rails.env" do
+      before do
+        allow(Pokey).to receive(:current_env).and_return("production")
+
+        Pokey.configure do |config|
+          config.run_on = [:development, :qa]
+        end
+      end
+
+      subject { Pokey.should_run? }
+
+      it "returns false" do
+        expect(subject).to eq false
+      end
+    end
+  end
 end
