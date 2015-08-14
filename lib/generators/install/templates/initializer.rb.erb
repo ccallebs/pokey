@@ -1,0 +1,16 @@
+Pokey.configure do |config|
+  config.hook_dir = "app/hooks" 
+
+  # Add some hooks on-the-fly here. If your data is somewhat complicated, add
+  # a hook instead with `rails g pokey:hook hook_name`
+  # config.add_hook do |hook|
+  #   hook.destination = "/my/webhook/endpoint"
+  #   hook.data = {
+  #     name: "Test endpoint"
+  #   }
+  #   hook.interval = 120 # in seconds
+  #   hook.http_method = :post
+  # end
+
+  Pokey::Scheduler.commit!
+end
