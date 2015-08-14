@@ -31,18 +31,6 @@ RSpec.describe Pokey::Hooks do
     end
   end
 
-  describe '.add_from_file' do
-    let(:file) { './spec/pokey/sample_hooks/sample_hook.rb' }
-
-    let(:subject) do
-      Pokey::Hooks.add_from_file(file)
-    end
-
-    it 'successfully adds hook to list' do
-      expect { subject }.to change { Pokey::Hooks.all.length }.by(1)
-    end
-  end
-
   describe '.add_from_dir' do
     let(:dir) { './spec/pokey/sample_hooks/' }
 

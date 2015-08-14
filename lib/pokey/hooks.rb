@@ -26,14 +26,6 @@ class Pokey::Hooks
     @@hooks << klass.new
   end
 
-  def self.add_from_file(file_path)
-    require file_path
-    
-    base_name = File.basename(file_path, ".rb")
-    klass = Helpers::Inflector.constantize(base_name.split('_').collect(&:capitalize).join) 
-    add_from_class(klass)
-  end
-
   def self.add_from_dir(directory)
     directory += "/" if directory[-1] != "/"
 
