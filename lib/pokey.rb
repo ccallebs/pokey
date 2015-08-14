@@ -6,6 +6,11 @@ require "pokey/logger"
 require "pokey/request"
 require "pokey/scheduler"
 
+if defined?(Rails)
+  require "generators/install/install_generator"
+  require "generators/hook/hook_generator"
+end
+
 module Pokey
   class << self
     attr_writer :configuration
