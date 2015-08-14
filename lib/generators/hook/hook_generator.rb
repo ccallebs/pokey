@@ -7,7 +7,7 @@ module Pokey
       source_root File.expand_path("../templates", __FILE__)
 
       def create_hook_file
-        template "hook.rb", "#{Pokey.hook_dir}/#{file_path.tr('/', '_')}.rb"
+        template "hook.rb", "#{Pokey.hook_dir}/#{file_path.tr('/', '_')}_hook.rb"
       end
     end
   end
