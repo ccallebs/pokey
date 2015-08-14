@@ -23,37 +23,37 @@ Or install it yourself as:
 
 ## Usage
 
-Create a new file in your initializers directory named `pokey.rb`. Here
-is where you'll be defining your API calls.
+If you're using Rails, create the initializer by running:
+
+    $ rails g pokey:install
+
+Otherwise, create a new file in your initializers directory named `pokey.rb`. You'll be
+setting the default hook directory and (optionally) defining custom hooks here.
 
 ``` RUBY
 Pokey.configure do |config|
+  config.hook_dir = "app/pokey" # Defaults to app/pokey
+
   config.add_hook do |hook|
     hook.destination = "/my/webhook/endpoint"
     hook.data = {
       name: "Test endpoint",
       endpoint_id: 1
     }
+    hook.interval = 20 # in seconds
+    hook.http_method = :post # supports GET and POST for right now
   end
-
-  Pokey::Scheduler.commit! # This isn't necessary in the config block
-                           # but is a decent enough place to put it. This
-                           # signifies that all endpoints have been added
-                           # and Rufus will begin to schedule hooks.
 end
 ```
 
-In addition, you can also define classes inside a designated directory to
-streamline creation of Pokey events.
+If you would like to add many hooks to your project, you can place them in the `hook_dir`
+you specified in the initializer. If you're using Rails, you can run
+
+    $ rails g pokey:hook sendgrid_event
+
+to create a new `Pokey::Hook` template. Otherwise, create a file like the following:
 
 ``` RUBY
-# initializers/pokey.rb
-Pokey.configure do |config|
-  config.hook_dir = "app/pokey" # Defaults to app/pokey
-  
-  Pokey::Scheduler.commit!
-end
-
 # app/pokey/sendgrid_event_hook.rb
 class SendgridEventHook < Pokey::Hook
   def destination
@@ -115,7 +115,7 @@ end
 ```
 
 As your data will inevitably get more complex to simulate actual events,
-Pokey::Hook sub-classes are the preferred way to declare endpoints.
+`Pokey::Hook` subclasses are preferred over ad-hoc hook definitions.
 
 
 ## Contributing
