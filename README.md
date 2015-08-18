@@ -120,6 +120,11 @@ end
 As your data will inevitably get more complex to simulate actual events,
 `Pokey::Hook` subclasses are preferred over ad-hoc hook definitions.
 
+## Pre-made Hooks
+I'm attempting to create a suite of pre-made hooks to make simulating
+production data easier. Here is a list:
+
+- https://github.com/ccallebs/pokey-sendgrid
 
 ## Contributing
 
