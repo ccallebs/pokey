@@ -58,61 +58,24 @@ to create a new `Pokey::Hook` template. Otherwise, create a file like the follow
 
 ``` RUBY
 # app/pokey/sendgrid_event_hook.rb
-class SendgridEventHook < Pokey::Hook
+class MyCustomtHook < Pokey::Hook
+  # The API endpoint to hit
   def destination
-    if Rails.env.development?
-      "http://localhost:3000/api/sendgrid/events"
-    elsif Rails.env.qa?
-      "http://our-qa-environment.domain.com/api/sendgrid/events"
-    end
   end
 
+  # The data to pass along to the API endpoint
   def data
-    {
-      name: event,
-      email: email,
-      category: category,
-      useragent: user_agent,
-      ip: ip_address,
-      stmp_id: stmp_id
-    }
+    { }
   end
 
+  # The HTTP method to use (only supports GET/POST right now)
   def http_method
     :post
   end
 
+  # Time (in seconds) between requests
   def interval
     5
-  end
-
-  protected
-
-  def stmp_id
-    "<54d39f028d4ab_#{Random.rand(200000)}@web3.mail>"
-  end
-
-  def ip_address
-    "192.168.0.#{Random.rand(255)}"
-  end
-
-  def user_agent
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36"
-  end
-
-  def category
-    [
-      ["User", "Welcome Email"],
-      ["User", "Forgot Password"]
-    ].sample
-  end
-
-  def event
-    ['delivered', 'open', 'click'].sample
-  end
-
-  def email
-    "autogen-#{Random.rand(200)}@domain.com"
   end
 end
 ```
