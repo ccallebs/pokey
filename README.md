@@ -50,14 +50,15 @@ end
 ```
 
 If you would like to add many hooks to your project, you can place them in the `hook_dir`
-you specified in the initializer. If you're using Rails, you can run
+you specified in the initializer. Please note that **each file** must have a `_hook.rb`
+suffix. If you're using Rails, you can run
 
     $ rails g pokey:hook sendgrid_event
 
 to create a new `Pokey::Hook` template. Otherwise, create a file like the following:
 
 ``` RUBY
-# app/pokey/sendgrid_event_hook.rb
+# app/pokey/my_custom_hook.rb
 class MyCustomtHook < Pokey::Hook
   # The API endpoint to hit
   def destination
