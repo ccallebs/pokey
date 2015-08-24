@@ -59,7 +59,7 @@ to create a new `Pokey::Hook` template. Otherwise, create a file like the follow
 
 ``` RUBY
 # app/pokey/my_custom_hook.rb
-class MyCustomtHook < Pokey::Hook
+class MyCustomHook < Pokey::Hook
   # The API endpoint to hit
   def destination
   end
