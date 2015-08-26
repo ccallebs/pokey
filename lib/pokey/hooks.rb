@@ -18,7 +18,7 @@ class Pokey::Hooks
   def self.add(&block)
     hook = Pokey::Hook.new
     block.call(hook)
-    @@hooks << hook
+    @@hooks << hook if hook.valid?
   end
 
   def self.add_from_class(klass)

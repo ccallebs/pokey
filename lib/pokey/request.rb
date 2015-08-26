@@ -54,11 +54,7 @@ class Pokey::Request
         Net::HTTP::Get.new(uri)
       elsif @http_method == :post
         Net::HTTP::Post.new(uri)
-      else
-        raise UnknownHTTPObjectError
       end
     end
   end
 end
-
-class UnknownHTTPObjectError < Exception; end;

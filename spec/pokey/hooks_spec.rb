@@ -29,6 +29,43 @@ RSpec.describe Pokey::Hooks do
       expect(hook.data).to eq({ name: "Test", id: 1 })
       expect(hook.interval).to eq(3600)
     end
+
+    context 'when destination is bad' do
+      subject do
+        Pokey::Hooks.add do |hook|
+          hook.interval = 3600
+        end
+      end
+
+      it 'throws exceptions' do
+        expect { subject }.to raise_error(Pokey::InvalidDestinationError)
+      end
+    end
+
+    context 'when interval is bad' do
+      subject do
+        Pokey::Hooks.add do |hook|
+          hook.destination = "http://test.com/destination"
+        end
+      end
+
+      it 'raises exception' do
+        expect { subject }.to raise_error(Pokey::InvalidIntervalError)
+      end
+    end
+
+    context 'when http_method is bad' do
+      subject do
+        Pokey::Hooks.add do |hook|
+          hook.destination = "http://test.com/destination"
+          hook.http_method = :does_not_exist
+        end
+      end
+
+      it 'raises exception' do
+        expect { subject }.to raise_error(Pokey::InvalidHTTPMethodError)
+      end
+    end
   end
 
   describe '.add_from_dir' do
