@@ -32,8 +32,12 @@ module Pokey
       configuration.hook_dir
     end
 
+    def accessible_environments
+      configuration.run_on.map(&:to_s)
+    end
+
     def should_run?
-      current_env.nil? || configuration.run_on.map(&:to_s).include?(current_env)
+      current_env.nil? || accessible_environments.include?(current_env)
     end
 
     def current_env
