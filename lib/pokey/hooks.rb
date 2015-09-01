@@ -28,8 +28,10 @@ class Pokey::Hooks
 
   def self.add_from_dir(directory)
     directory += "/" if directory[-1] != "/"
-
-    Dir.glob("#{directory}*.rb").map(&File.method(:realpath)).each do |file_path|
+    fetch_real_path = File.method(:realpath).to_proc
+    files = Dir.glob("#{directory}*.rb").map { |f| fetch_real_path.call(f) }
+    
+    files.each do |file_path|
       require file_path
 
       base_name = File.basename(file_path, ".rb")
